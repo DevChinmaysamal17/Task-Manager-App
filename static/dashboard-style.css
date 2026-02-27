@@ -12,37 +12,57 @@ body {
 }
 
 .navbar {
-    position: sticky;
-    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 60px;
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(4px);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 16px 40px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .nav-list {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 24px;
     align-items: center;
 }
 
-.nav-list li a {
+.nav-list li img {
+    width: 28px;
+}
+
+.nav-list li a,
+.contactus {
+    position: relative;
     text-decoration: none;
-    color: #cbd5e1;
+    color: #e2e8f0;
     font-weight: 500;
+    padding: 6px 10px;
     transition: 0.3s ease;
 }
 
-.nav-list li a:hover {
-    color: #3b82f6;
+.nav-list li a::after,
+.contactus::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background: #6366f1;
+    transition: 0.3s ease;
 }
 
-.nav-list img {
-    width: 28px;
+.nav-list li a:hover,
+.contactus:hover {
+    color: #818cf8;
+}
+
+.nav-list li a:hover::after,
+.contactus:hover::after {
+    width: 100%;
 }
 
 .logout {
