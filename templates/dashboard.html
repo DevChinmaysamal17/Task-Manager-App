@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Task Manager - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard-style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><img src="{{ url_for('static', filename='Task_manager_logo.png') }}" alt="logo"></li>
+            <li><a href="{{url_for('dashboard')}}">Home</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Services">Services</a></li>
+            <li><a href="#ContactUs" class="contactus">Contact us</a></li>
+        </ul>
+        <div class="rightnav">
+            <a href="{{url_for('signout')}}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <h1 class="greet">Hello Student!</h1>
+    <div class="div-form">
+        <h2 class="newtask">Add New Task</h2>
+        <form class="newtask-form" action="{{ url_for('add_task') }}" method="POST">
+            <input type="text" name="task" placeholder="Enter Task" required>
+            <input type="date" name="duedate" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        <h1 class="yourtasks">Your Tasks</h1>
+    </div>
+    <table class="task-table">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+                <th class="title-checkbox">Check Box</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.task }}</td>
+                <td>{{ task.duedate.strftime('%Y-%m-%d') }}</td>
+                <td>{{ task.status }}</td>
+                <td>
+                    <a href="{{ url_for('edit_task', id = task.id)}}">Edit</a>
+                    <a href="{{ url_for('delete_task', id = task.id)}}">Delete</a>
+                </td>
+                <td class="checkbox-box">
+                    <form action="{{ url_for('check_status', id=task.id) }}" method="POST">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="status" onchange="this.form.submit()" {% if task.status=="Done"
+                                %} checked {% endif %}>
+
+                            <span class="checkmark"></span>
+                        </label>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <footer class="footer">Copyright &copy; 2026 www.studenttaskmanager.com - All Rights Reserved</footer>
+</body>
+
+</html>

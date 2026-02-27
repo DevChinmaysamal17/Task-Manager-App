@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Task Manager - Edit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit-style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><img src="{{ url_for('static', filename='Task_manager_logo.png') }}" alt="logo"></li>
+            <li><a href="{{url_for('dashboard')}}">Home</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Services">Services</a></li>
+            <li><a href="#ContactUs" class="contactus">Contact us</a></li>
+        </ul>
+        <div class="rightnav">
+            <a href="{{url_for('index')}}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <div class="div-form">
+        <h2 class="newtask">Update Task</h2>
+        <form class="newtask-form" action="{{ url_for('add_task', id = task.id) }}" method="POST">
+            <input type="text" name="task" placeholder="Enter Task" value="{{ task.task }}" required>
+            <input type="date" name="duedate" value="{{ task.duedate.strftime('%Y-%m-%d') }}" required>
+            <button type="submit">Submit</button>
+        </form>
+
+
+    </div>
+    <footer class="footer">Copyright &copy; 2026 www.studenttaskmanager.com - All Rights Reserved</footer>
+
+</body>
+
+</html>
