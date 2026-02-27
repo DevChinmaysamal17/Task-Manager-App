@@ -29,7 +29,7 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
 
-        if username == "a" and password == "a":
+        if username == "Student" and password == "Student":
             session["user"] = username
             return redirect(url_for("dashboard"))
         else:
